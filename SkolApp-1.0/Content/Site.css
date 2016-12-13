@@ -120,6 +120,18 @@ footer p
     text-shadow: 0 0 1px #000000;
 }
 
+.answertext{
+    text-decoration: underline;
+}
+
+.right{
+    color: rgba(30, 255, 1, 1);
+}
+
+.wrong{
+    color: rgba(255, 120, 1, 0.6);
+}
+
 .orange { background-color: rgba(255, 120, 1, 0.6); }
 .blue { background-color: rgba(5, 1, 255, 0.3); }
 .green { background-color: rgba(30, 255, 1, 0.4); }

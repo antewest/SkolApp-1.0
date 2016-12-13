@@ -1,1 +1,1 @@
-﻿
+﻿var SkolApp = angular.module("SkolApp", ["ngSanitize"]);

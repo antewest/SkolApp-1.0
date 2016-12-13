@@ -4,21 +4,25 @@
 
 <h2 class="header">Skiljetecken.</h2>
 
-<div class="row">
-    <div class="col-xs-12">
+<div class="row" ng-app="SkolApp">
+    <div class="col-xs-12" ng-controller="punctuationController">
         <div class="col-md-6 col-sm-6 col-xs-12 no-space">
-            <div class="image-wrapper">
-                <div class="overlay image" style="background-image: url('/Media/fargburkar.jpg'); background-size: cover;"></div>
+            <div>
+                <h3>{{astrisksentence()}}</h3>
+            </div><br />
+            <div class="answertext" ng-class="answerclass()" ng-bind-html="answersentenceView">
+                
             </div>
+
         </div>
 
         <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
             <p class="col-xs-12">Bild 1 av 52</p>
 
-            <h3 class="col-xs-12">Vad är det på bilden?</h3>
-            <form class="col-xs-12" method="post" ng-submit="">
+            <h3 class="col-xs-12">Skriv rätt Skiljetecken.</h3>
+            <form class="col-xs-12" method="post" ng-submit="checkstring()">
                 <div class="form-group">
-                    <input type="text" name="imageDesc" ng-model="" placeholder="Skriv ditt svar här" class="col-xs-12 form-control" />
+                    <textarea ng-model="answersentence" placeholder="Skriv ditt svar här" class="col-xs-12 form-control" style="resize: none;"> </textarea>
                 </div>
 
                 <div class="form-group">
