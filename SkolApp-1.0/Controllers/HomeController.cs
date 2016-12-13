@@ -17,5 +17,10 @@ namespace SkolApp_1._0.Controllers
         {
             return View();
         }
+
+        public ActionResult punctuation()
+        {
+            return View();
+        }
     }
 }
