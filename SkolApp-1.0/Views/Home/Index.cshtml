@@ -1,31 +1,85 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Välkommen";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<h2 class="header">Välj ifrån de olika utmaningarna nedan.</h2>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-xs-12">
+        <a href="#" title="Ord och färg">
+            <div class="col-md-4 col-sm-4 col-xs-6 no-space">
+                <div class="image-wrapper">
+                    <div class="overlay image" style="background-image: url('/Media/fargburkar.jpg'); background-size: cover;">
+                        <div class="overlay orange"></div>
+                        <h3 class="box-text">
+                            <span>Ord & Färg</span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/Home/WordAndImages/" title="Ord och bild">
+            <div class="col-md-4 col-sm-4 col-xs-6 no-space">
+                <div class="image-wrapper">
+                    <div class="overlay image" style="background-image: url('/Media/paint.jpg'); background-size: cover;">
+                        <div class="overlay blue"></div>
+                        <h3 class="box-text">
+                            <span>Ord & Bild</span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="/Home/punctuation/" title="Skiljetecken">
+            <div class="col-md-4 col-sm-4 col-xs-6 no-space">
+                <div class="image-wrapper">
+                    <div class="overlay image" style="background-image: url('/Media/punctuation.jpg'); background-size: cover;">
+                        <div class="overlay purple"></div>
+                        <h3 class="box-text">
+                            <span>Skiljetecken</span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" title="Hitta orden">
+            <div class="col-md-4 col-sm-4 col-xs-6 no-space">
+                <div class="image-wrapper">
+                    <div class="overlay image" style="background-image: url('/Media/write.jpg'); background-size: cover;">
+                        <div class="overlay green"></div>
+                        <h3 class="box-text">
+                            <span>Hitta Orden</span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" title="Utmaningen">
+            <div class="col-md-4 col-sm-4 col-xs-6 no-space">
+                <div class="image-wrapper">
+                    <div class="overlay image" style="background-image: url('/Media/question.jpeg'); background-size: cover;">
+                        <div class="overlay yellow"></div>
+                        <h3 class="box-text">
+                            <span>Utmaningen</span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <div class="col-md-4 col-sm-4 col-xs-6 no-space">
+            <div class="image-wrapper">
+                <div class="overlay">
+                    <div class="overlay black"></div>
+                    <h3 class="box-text">
+                        <span>Skapad av TheBigBoys</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
