@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkolApp_1._0.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,9 +19,27 @@ namespace SkolApp_1._0.Controllers
             return View();
         }
 
-        public ActionResult punctuation()
+        public JsonResult GetWordAndImage()
+        {
+            List<QuestionModel> test = new List<QuestionModel>();
+            test.Add(new QuestionModel { Question = "/Media/write.jpg", Answer = "skriver" });
+            test.Add(new QuestionModel { Question = "/Media/paint.jpg", Answer = "målar" });
+            test.Add(new QuestionModel { Question = "/Media/fargburg.jpg", Answer = "färg" });
+
+            return Json(test, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Punctuation()
         {
             return View();
+        }
+
+
+        public JsonResult GetColors()
+        {
+            var model = new ColorModel();
+
+            return Json(model.ColorDictionary, JsonRequestBehavior.AllowGet);
         }
     }
 }

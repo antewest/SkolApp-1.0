@@ -7,22 +7,35 @@
 <div class="row" ng-app="SkolApp">
     <div class="col-xs-12" ng-controller="punctuationController">
         <div class="col-md-6 col-sm-6 col-xs-12 no-space">
+<<<<<<< HEAD
             <div>
                 <h3>{{astrisksentence()}}</h3>
             </div><br />
             <div class="answertext" ng-class="answerclass()" ng-bind-html="answersentenceView">
                 
+=======
+            <div class="col-xs-12 text-wrapper">
+                <p>Detta är en hårdkodad text(*) den ska bytas ut mot den text som kommer från controllern via angular(*) Observera att alla skiljetecken är borta(*)</p>
+                <p>Detta är andra paragrafen som också bara innehåller skit(*)</p>
+>>>>>>> af34ef1d0fa53157f09c9438f3b02ed02f18cce5
             </div>
 
         </div>
 
         <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-            <p class="col-xs-12">Bild 1 av 52</p>
+            <p class="col-xs-12">Text 1 av 3</p>
 
+<<<<<<< HEAD
             <h3 class="col-xs-12">Skriv rätt Skiljetecken.</h3>
             <form class="col-xs-12" method="post" ng-submit="checkstring()">
                 <div class="form-group">
                     <textarea ng-model="answersentence" placeholder="Skriv ditt svar här" class="col-xs-12 form-control" style="resize: none;"> </textarea>
+=======
+            <h3 class="col-xs-12">Vad står det i rutan?</h3>
+            <form class="col-xs-12" method="post" ng-submit="">
+                <div class="form-group">
+                    <textarea name="textDesc" ng-model="" placeholder="Skriv ditt svar här" class="col-xs-12 form-control"></textarea>
+>>>>>>> af34ef1d0fa53157f09c9438f3b02ed02f18cce5
                 </div>
 
                 <div class="form-group">
