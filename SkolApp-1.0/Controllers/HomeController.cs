@@ -29,7 +29,7 @@ namespace SkolApp_1._0.Controllers
             return Json(test, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult punctuation()
+        public ActionResult Punctuation()
         {
             return View();
         }

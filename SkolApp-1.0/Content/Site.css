@@ -129,3 +129,20 @@ footer p
 .purple { background-color: rgba(141, 1, 255, 0.6); }
 .yellow { background-color: rgba(255, 213, 1, 0.65); }
 .black { background-color: #000000; }
+
+.text-wrapper
+{
+    border: 1px solid #DDDDDD;
+    padding: 5px;
+}
+
+.text-wrapper p
+{
+    padding: 0;
+    margin: 0;
+}
+
+.text-wrapper p + p
+{
+    margin-top: 15px;
+}
