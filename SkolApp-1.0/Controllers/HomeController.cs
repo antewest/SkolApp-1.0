@@ -19,7 +19,6 @@ namespace SkolApp_1._0.Controllers
             return View();
         }
 
-<<<<<<< HEAD
         public JsonResult GetWordAndImage()
         {
             List<QuestionModel> test = new List<QuestionModel>();
@@ -28,11 +27,11 @@ namespace SkolApp_1._0.Controllers
             test.Add(new QuestionModel { Question = "/Media/fargburg.jpg", Answer = "färg" });
 
             return Json(test, JsonRequestBehavior.AllowGet);
-=======
+        }
+
         public ActionResult punctuation()
         {
             return View();
->>>>>>> 641daad76cf522b809aa8e6bd8725259b46d4871
         }
     }
 }
