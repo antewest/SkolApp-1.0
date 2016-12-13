@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkolApp_1._0.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,8 +21,10 @@ namespace SkolApp_1._0.Controllers
 
         public JsonResult GetWordAndImage()
         {
-            Dictionary<string, string> test = new Dictionary<string, string>();
-            test.Add("/Media/write.jpg", "write");
+            List<QuestionModel> test = new List<QuestionModel>();
+            test.Add(new QuestionModel { Question = "/Media/write.jpg", Answer = "skriver" });
+            test.Add(new QuestionModel { Question = "/Media/paint.jpg", Answer = "målar" });
+            test.Add(new QuestionModel { Question = "/Media/fargburg.jpg", Answer = "färg" });
 
             return Json(test, JsonRequestBehavior.AllowGet);
         }
