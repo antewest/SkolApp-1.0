@@ -68,12 +68,15 @@ footer p
 {
     background-repeat: no-repeat;
     background-position: center center;
+}
 
+.image.imageHover
+{
     transition: all .25s ease-in;
     -webkit-transition: all .25s ease-in;
 }
 
-.image:hover
+.image.imageHover:hover
 {
     cursor: pointer;
     transform: scale(1.15);

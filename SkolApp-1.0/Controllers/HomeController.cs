@@ -17,5 +17,13 @@ namespace SkolApp_1._0.Controllers
         {
             return View();
         }
+
+        public JsonResult GetWordAndImage()
+        {
+            Dictionary<string, string> test = new Dictionary<string, string>();
+            test.Add("/Media/write.jpg", "write");
+
+            return Json(test, JsonRequestBehavior.AllowGet);
+        }
     }
 }
