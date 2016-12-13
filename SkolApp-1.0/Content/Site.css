@@ -3,12 +3,6 @@
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -22,3 +16,92 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Custom styles */
+.header
+{
+    margin: 20px 0;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+footer
+{
+    margin-top: 50px;
+}
+
+footer p
+{
+   font-size: 16px;
+   color: #888888;
+}
+
+.no-space
+{
+    padding: 0;
+    margin: 0;
+}
+
+.image-wrapper
+{
+    position: relative;
+    overflow: hidden;
+}
+
+.image-wrapper:after
+{
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+}
+
+.overlay
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.image
+{
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    transition: all .25s ease-in;
+    -webkit-transition: all .25s ease-in;
+}
+
+.image:hover
+{
+    cursor: pointer;
+    transform: scale(1.15);
+}
+
+.image-wrapper > .overlay .box-text
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: table;
+    text-align: center;
+}
+
+.image-wrapper > .overlay .box-text > span
+{
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    color: #FFFFFF;
+    font-size: 1.4em;
+    text-shadow: 0 0 1px #000000;
+}
+
+.orange { background-color: rgba(255, 120, 1, 0.6); }
+.blue { background-color: rgba(5, 1, 255, 0.3); }
+.green { background-color: rgba(30, 255, 1, 0.4); }
+.purple { background-color: rgba(141, 1, 255, 0.6); }
+.yellow { background-color: rgba(255, 213, 1, 0.65); }
+.black { background-color: #000000; }
