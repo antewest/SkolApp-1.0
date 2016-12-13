@@ -7,18 +7,19 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="col-md-6 col-sm-6 col-xs-12 no-space">
-            <div class="image-wrapper">
-                <div class="overlay image" style="background-image: url('/Media/fargburkar.jpg'); background-size: cover;"></div>
+            <div class="col-xs-12 text-wrapper">
+                <p>Detta är en hårdkodad text(*) den ska bytas ut mot den text som kommer från controllern via angular(*) Observera att alla skiljetecken är borta(*)</p>
+                <p>Detta är andra paragrafen som också bara innehåller skit(*)</p>
             </div>
         </div>
 
         <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-            <p class="col-xs-12">Bild 1 av 52</p>
+            <p class="col-xs-12">Text 1 av 3</p>
 
-            <h3 class="col-xs-12">Vad är det på bilden?</h3>
+            <h3 class="col-xs-12">Vad står det i rutan?</h3>
             <form class="col-xs-12" method="post" ng-submit="">
                 <div class="form-group">
-                    <input type="text" name="imageDesc" ng-model="" placeholder="Skriv ditt svar här" class="col-xs-12 form-control" />
+                    <textarea name="textDesc" ng-model="" placeholder="Skriv ditt svar här" class="col-xs-12 form-control"></textarea>
                 </div>
 
                 <div class="form-group">
