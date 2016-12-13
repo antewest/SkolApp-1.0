@@ -25,7 +25,12 @@ namespace SkolApp_1._0
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular.js",
-                      "~/Scripts/app.js"));
+                      "~/Scripts/angular-animate.js",
+                      "~/Scripts/angular-route.js",
+                      "~/SkolApp/*.js",
+                      "~/SkolApp/services/*.js",
+                      "~/SkolApp/filters/*.js",
+                      "~/SkolApp/controllers/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
