@@ -34,16 +34,12 @@ namespace SkolApp_1._0.Controllers
             return View();
         }
 
-        public ActionResult ColorAndText()
-        {
-            return View();
-        }
 
         public JsonResult GetColors()
         {
             var model = new ColorModel();
 
-            return Json(model.ColorDictionary.ToArray(), JsonRequestBehavior.AllowGet);
+            return Json(model.ColorDictionary, JsonRequestBehavior.AllowGet);
         }
     }
 }
