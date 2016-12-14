@@ -3,7 +3,7 @@ SkolApp.filter("PunctuationAnswer", [function () {
     return function (input, answer) {
 
         input = input || '';
-
+        answer = answer || '';
         if (input == '')
             return input;
 
@@ -25,19 +25,18 @@ SkolApp.filter("PunctuationAnswer", [function () {
                     this.push(value);
                 else
                     this.push("<span class='orange'>" + value);
-                console.log("false:"+lastfalseIndex);
+                //console.log("false:"+lastfalseIndex);
                 lastfalseIndex = key;
             }
             else { // right
                 if (lastfalseIndex == (key - 1))
                     this.push("</span>");
-
-                if (lastrightIndex == (key - 1))
+                else if (lastrightIndex == (key - 1))
                     this.push(value);
                 else
                     this.push("<span class='green'>" + input[key] + "</span>");
 
-                console.log("right:" + lastrightIndex);
+                //console.log("right:" + lastrightIndex);
                 lastrightIndex = key;
             }
                 

@@ -1,10 +1,10 @@
 ﻿
 SkolApp.factory("Points", function () {
     return {
-        addPoints: function (amount) {
+        AddPoints: function (amount) {
             this.TotalPoints += amount;
         },
-        removePoints: function (amount) {
+        RemovePoints: function (amount) {
             this.TotalPoints -= amount;
         },
         TotalPoints: 0

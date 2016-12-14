@@ -1,42 +1,61 @@
-﻿
-SkolApp.controller("punctuationController",
-    ["$scope", "$sce", "PunctuationChecker", "Points", "PunctuationAnswerFilter", "PunctuationQuestionFilter",
-    function ($scope, $sce, PunctuationChecker, Points) {
+﻿(function () {
+    var punctuationController = function ($scope, Points, TaskProvider, GetScores) {
 
-        // to get from repository
-        // only this is needed for the system to work.
-        $scope.rightsentences = [
-            "I have a hamster, a dog, and a cat.",
-            "Spain is a beautiful country; the beaches are warm, sandy and spotlessly clean.",
-            "The children's books were all left in the following places: Mrs Smith's room, Mr Powell's office and the caretaker's cupboard.",
-            "She always enjoyed sweets, chocolate, marshmallows and toffee apples.",
-            "Sarah's uncle's car was found without its wheels in that old, derelict warehouse."
-        ];
+        GetScores.TopScores(10, "punctuation").then(function (response) {
+            $scope.scores = response;
+        })
 
-        $scope.rightsentence = $scope.rightsentences[0];
+        var UpdateTask = function (PassedTest) {
+            $scope.CurrentTask = TaskProvider.GetNext(PassedTest);
+            $scope.TaskIndex = TaskProvider.GetCount().Current;
+            $scope.User.Input = '';
+        }
 
+        var OnError = function (response) {
+            console.error(response.statusText);
+        }
 
-        $scope.next = function () {
-            var indexOfCurrentSentence = $scope.rightsentences.indexOf($scope.rightsentence);
-            if (indexOfCurrentSentence < ($scope.rightsentences.length - 1)) {
-                if (angular.equals(angular.uppercase($scope.rightsentence), angular.uppercase($scope.answersentence)))
-                    Points.addPoints(1);
+        TaskProvider.GetTask("GetPunctuations").then(function (response) {
+            UpdateTask(false);
+            $scope.AmountOfTasks = TaskProvider.GetCount().Last;
+        });
 
-                $scope.answersentence = "";
-                $scope.rightsentence = $scope.rightsentences[indexOfCurrentSentence + 1];
+        $scope.CheckTask = function () {
+            var PassedTest = false;
+            if ($scope.User.Input.length <= 0) {
+                alert("Du måste skriva något innan du kan rätta.");
+                return;
+            }
 
-                console.log("Points:" + Points.TotalPoints);
+            if ($scope.CurrentTask.Question.toLowerCase() == $scope.User.Input.toLowerCase()) {
+                alert("Rätt svar!");
+                PassedTest = true;
             }
             else {
-                $scope.rightsentence = "Done.";
-                console.log("finished");
-                console.log("Points:" + Points.TotalPoints);
+                alert("Tyvärr, det är fel svar :(");
             }
 
-            $scope.answersentenceView = "";
-        };
+            UpdateTask(PassedTest);
+        }
 
-        $scope.checkstring = function () {
-            $scope.answersentenceView = $scope.answersentence;
+        $scope.CurrentTask = {};
+        $scope.TaskIndex;
+        $scope.AmountOfTasks;
+        $scope.User = {
+            Input: ""
         };
-    }]);
+    };
+
+    angular.module("SkolApp").controller(
+        "punctuationController",
+        [
+            "$scope",
+            "Points",
+            "TaskProvider",
+            "GetScores",
+            "PunctuationAnswerFilter",
+            "PunctuationQuestionFilter",
+            punctuationController
+        ]
+        );
+}());

@@ -2,23 +2,23 @@
     ViewBag.Title = "Skiljetecken";
 }
 
-<h2 class="header">Skiljetecken.</h2>
+<h2 class="header">Skiljetecken:</h2>
 
-<div class="row">
-    <div class="col-xs-12" ng-controller="punctuationController">
+<div class="row" ng-controller="punctuationController">
+    <div class="col-xs-12">
         <div class="col-md-6 col-sm-6 col-xs-12 no-space">
-            <div class="answertext" ng-bind-html="answersentenceView | PunctuationAnswer:rightsentence"></div>
+            <div class="answertext" ng-bind-html="User.Input | PunctuationAnswer:CurrentTask.Question"></div>
         </div>
 
         <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-            <p class="col-xs-12">Text {{rightsentences.indexOf(rightsentence) + 1}} av {{rightsentences.length}}</p>
+            <p class="col-xs-12">Text {{TaskIndex + 1}} av {{AmountOfTasks}}</p>
             <div class="col-xs-12">
                 <h3>Skriv rätt Skiljetecken.</h3>
-                <h4>{{rightsentence | PunctuationQuestion}}</h4>
+                <h4>{{CurrentTask.Question | PunctuationQuestion}}</h4>
             </div>
-            <form class="col-xs-12" method="post" ng-submit="checkstring()">
+            <form class="col-xs-12" method="post" ng-submit="CheckTask()">
                 <div class="form-group">
-                    <textarea ng-model="answersentence" placeholder="Skriv ditt svar här" class="col-xs-12 form-control" style="resize: none;"> </textarea>
+                    <textarea ng-model="User.Input" placeholder="Skriv ditt svar här" class="col-xs-12 form-control" style="resize: none;"> </textarea>
                 </div>
 
                 <div class="form-group">
@@ -28,10 +28,30 @@
                     </button>
                 </div>
             </form>
-            <button name="send" class="col-xs-4 btn btn-primary" ng-click="next()">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <span>Nästa</span>
-            </button>
         </div>
+    </div>
+    <div class="col-xs-12">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Position
+                    </th>
+                    <th>
+                        NickName
+                    </th>
+                    <th>
+                        Score
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(key, val) in scores | orderBy:val.Points">
+                    <td>{{key+1}}</td>
+                    <td>{{val.NickName}}</td>
+                    <td>{{val.Points}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

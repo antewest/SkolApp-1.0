@@ -1,30 +1,23 @@
 ﻿(function () {
-    SkolApp.controller("WordAndImageController", ["$scope", "$http", function ($scope, $http) {
+    SkolApp.controller("WordAndImageController", ["$scope", "$http", "TaskProvider", function ($scope, $http, TaskProvider) {
+
+        var UpdateTask = function (PassedTest) {
+            $scope.CurrentTask = TaskProvider.GetNext(PassedTest);
+            $scope.TaskIndex = TaskProvider.GetCount().Current;
+            $scope.User.Input = '';
+        }
 
         var OnError = function (response) {
             console.error(response.statusText);
         }
 
-        var SetTask = function (index) {
-            $scope.CurrentTask = $scope.Tasks[index];
-            $scope.User.Input = "";
-
-            console.log($scope.CurrentTask);
-        }
-
-        var Init = function (response) {
-            if (response.data.length > 0) {
-                $scope.Tasks = response.data;
-                $scope.TaskIndex = 0;
-
-                SetTask($scope.TaskIndex);
-            }
-        }
-
-        $http.get("/Home/GetWordAndImage/")
-             .then(Init, OnError);
+        TaskProvider.GetTask("GetWordAndImage").then(function (response) {
+            UpdateTask(false);
+            $scope.AmountOfTasks = TaskProvider.GetCount().Last;
+        });
 
         $scope.CheckTask = function () {
+            var PassedTest = false;
             if ($scope.User.Input.length <= 0)
             {
                 alert("Du måste skriva något innan du kan rätta.");
@@ -33,27 +26,20 @@
 
             if ($scope.CurrentTask.Answer.toLowerCase() == $scope.User.Input.toLowerCase()) {
                 alert("Rätt svar!");
-                $scope.User.Points += 1;
+                PassedTest = true;
             }
             else {
                 alert("Tyvärr, det är fel svar :(");
             }
 
-            if ($scope.TaskIndex < $scope.Tasks.length - 1) {
-                $scope.TaskIndex += 1;
-                SetTask($scope.TaskIndex);
-            }
-            else {
-                alert("Du fick " + $scope.User.Points + " rätt av " + $scope.Tasks.length + " möjliga.");
-            }
+            UpdateTask(PassedTest);
         }
 
-        $scope.Tasks = {};
         $scope.CurrentTask = {};
         $scope.TaskIndex;
+        $scope.AmountOfTasks;
         $scope.User = {
-            Input: "",
-            Points: 0
+            Input: ""
         };
 
     }]);
