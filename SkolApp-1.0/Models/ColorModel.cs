@@ -13,14 +13,16 @@ namespace SkolApp_1._0.Models
         public ColorModel()
         {
             ColorDictionary = new Dictionary<string, string>();
-            ColorDictionary.Add("Röd", GetColorCode(Color.Red.R, Color.Red.G, Color.Red.B));
-            ColorDictionary.Add("Blå", GetColorCode(Color.Blue.R, Color.Blue.G, Color.Blue.B));
-            ColorDictionary.Add("Grön", GetColorCode(Color.Green.R, Color.Green.G, Color.Green.B));
-        }
-
-        private string GetColorCode(int r, int g, int b)
-        {
-            return "rgb(" + r.ToString() + ", " + g.ToString() + ", " + b.ToString() + ")";
+            ColorDictionary.Add("Röd", ColorTranslator.ToHtml(Color.Red));
+            ColorDictionary.Add("Blå", ColorTranslator.ToHtml(Color.Blue));
+            ColorDictionary.Add("Grön", ColorTranslator.ToHtml(Color.Green));
+            ColorDictionary.Add("Gul", ColorTranslator.ToHtml(Color.Yellow));
+            ColorDictionary.Add("Rosa", ColorTranslator.ToHtml(Color.Pink));
+            ColorDictionary.Add("Grå", ColorTranslator.ToHtml(Color.Gray));
+            ColorDictionary.Add("Lila", ColorTranslator.ToHtml(Color.Purple));
+            ColorDictionary.Add("Orange", ColorTranslator.ToHtml(Color.Orange));
+            ColorDictionary.Add("Svart", ColorTranslator.ToHtml(Color.Black));
+            ColorDictionary.Add("Vit", ColorTranslator.ToHtml(Color.White));
         }
     }
 }
