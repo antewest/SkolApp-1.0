@@ -24,7 +24,7 @@ namespace SkolApp_1._0.Controllers
             List<QuestionModel> test = new List<QuestionModel>();
             test.Add(new QuestionModel { Question = "/Media/write.jpg", Answer = "skriver" });
             test.Add(new QuestionModel { Question = "/Media/paint.jpg", Answer = "målar" });
-            test.Add(new QuestionModel { Question = "/Media/fargburg.jpg", Answer = "färg" });
+            test.Add(new QuestionModel { Question = "/Media/fargburkar.jpg", Answer = "färg" });
 
             return Json(test, JsonRequestBehavior.AllowGet);
         }

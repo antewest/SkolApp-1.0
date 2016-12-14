@@ -5,21 +5,20 @@
 <h2 class="header">Skiljetecken.</h2>
 
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12" ng-controller="punctuationController">
         <div class="col-md-6 col-sm-6 col-xs-12 no-space">
-            <div class="col-xs-12 text-wrapper">
-                <p>Detta är en hårdkodad text(*) den ska bytas ut mot den text som kommer från controllern via angular(*) Observera att alla skiljetecken är borta(*)</p>
-                <p>Detta är andra paragrafen som också bara innehåller skit(*)</p>
-            </div>
+            <div class="answertext" ng-bind-html="answersentenceView | PunctuationAnswer:rightsentence"></div>
         </div>
 
         <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-            <p class="col-xs-12">Text 1 av 3</p>
-
-            <h3 class="col-xs-12">Vad står det i rutan?</h3>
-            <form class="col-xs-12" method="post" ng-submit="">
+            <p class="col-xs-12">Text {{rightsentences.indexOf(rightsentence) + 1}} av {{rightsentences.length}}</p>
+            <div class="col-xs-12">
+                <h3>Skriv rätt Skiljetecken.</h3>
+                <h4>{{rightsentence | PunctuationQuestion}}</h4>
+            </div>
+            <form class="col-xs-12" method="post" ng-submit="checkstring()">
                 <div class="form-group">
-                    <textarea name="textDesc" ng-model="" placeholder="Skriv ditt svar här" class="col-xs-12 form-control"></textarea>
+                    <textarea ng-model="answersentence" placeholder="Skriv ditt svar här" class="col-xs-12 form-control" style="resize: none;"> </textarea>
                 </div>
 
                 <div class="form-group">
@@ -29,6 +28,10 @@
                     </button>
                 </div>
             </form>
+            <button name="send" class="col-xs-4 btn btn-primary" ng-click="next()">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <span>Nästa</span>
+            </button>
         </div>
     </div>
 </div>
