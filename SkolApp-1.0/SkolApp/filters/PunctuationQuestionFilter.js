@@ -1,7 +1,7 @@
 ﻿
 SkolApp.filter("PunctuationQuestion", function () {
     return function (input) {
-        input = input || '';
+        input = input.toUpperCase() || '';
 
         if (input == '')
             return input;
@@ -19,5 +19,4 @@ SkolApp.filter("PunctuationQuestion", function () {
         };
         return temp2;
     }
-
 });

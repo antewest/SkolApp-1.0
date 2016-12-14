@@ -7,6 +7,9 @@ SkolApp.filter("PunctuationAnswer", [function () {
         if (input == '')
             return input;
 
+        var lastrightIndex = -5;
+        var lastfalseIndex = -5;
+
         input = input.toUpperCase();
         answer = answer.toUpperCase();
         var string = "";
@@ -14,14 +17,30 @@ SkolApp.filter("PunctuationAnswer", [function () {
         var punctuation = [".", "?", ",", "!"];
 
         angular.forEach(answer, function (value, key, obj) {
-            if (input[key] != value) {
-                this.push("<span class='orange'>" + value + "</span>");
+            if (input[key] != value) { // wrong
+                if (lastrightIndex == (key - 1))
+                    this.push("</span>");
+
+                if (lastfalseIndex == (key - 1))
+                    this.push(value);
+                else
+                    this.push("<span class='orange'>" + value);
+                console.log("false:"+lastfalseIndex);
+                lastfalseIndex = key;
             }
-            else if (input[key] == value && punctuation.indexOf(value) != -1) {
-                this.push("<span class='green'>" + input[key] + "</span>");
+            else { // right
+                if (lastfalseIndex == (key - 1))
+                    this.push("</span>");
+
+                if (lastrightIndex == (key - 1))
+                    this.push(value);
+                else
+                    this.push("<span class='green'>" + input[key] + "</span>");
+
+                console.log("right:" + lastrightIndex);
+                lastrightIndex = key;
             }
-            else
-                this.push(input[key]);
+                
         }, newstring);
 
         angular.forEach(newstring, function (value, key) {

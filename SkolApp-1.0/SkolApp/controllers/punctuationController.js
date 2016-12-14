@@ -17,22 +17,23 @@ SkolApp.controller("punctuationController",
 
 
         $scope.next = function () {
-            if ($scope.rightsentence == $scope.answersentence) {
-                var indexOfCurrentSentence = $scope.rightsentences.indexOf($scope.rightsentence);
-                if (indexOfCurrentSentence < ($scope.rightsentences.length - 1)) {
-                    $scope.answersentence = "";
-                    $scope.rightsentence = $scope.rightsentences[indexOfCurrentSentence + 1];
+            var indexOfCurrentSentence = $scope.rightsentences.indexOf($scope.rightsentence);
+            if (indexOfCurrentSentence < ($scope.rightsentences.length - 1)) {
+                if (angular.equals(angular.uppercase($scope.rightsentence), angular.uppercase($scope.answersentence)))
                     Points.addPoints(1);
-                    console.log("Points:" + Points.TotalPoints);
-                }
-                else {
-                    $scope.rightsentence = "Done.";
-                    console.log("finished");
-                    console.log("Points:" + Points.TotalPoints);
-                }
 
-                $scope.answersentenceView = "";
+                $scope.answersentence = "";
+                $scope.rightsentence = $scope.rightsentences[indexOfCurrentSentence + 1];
+
+                console.log("Points:" + Points.TotalPoints);
             }
+            else {
+                $scope.rightsentence = "Done.";
+                console.log("finished");
+                console.log("Points:" + Points.TotalPoints);
+            }
+
+            $scope.answersentenceView = "";
         };
 
         $scope.checkstring = function () {
