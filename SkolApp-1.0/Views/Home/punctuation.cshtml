@@ -4,22 +4,22 @@
 
 <h2 class="header">Skiljetecken.</h2>
 
-<div class="row" ng-app="SkolApp">
+<div class="row" ng-app="SkolApp" ng-cloak>
     <div class="col-xs-12" ng-controller="punctuationController">
         <div class="col-md-6 col-sm-6 col-xs-12 no-space">
             <div>
                 <h3></h3>
             </div><br />
-            <div class="answertext" ng-class="answerclass()" ng-bind-html="answersentenceView">
+            <div class="answertext" ng-bind-html="answersentenceView | PunctuationAnswer:rightsentence">
             </div>
 
         </div>
 
         <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-            <p class="col-xs-12">Text 1 av 3</p>
+            <p class="col-xs-12">Text {{rightsentences.indexOf(rightsentence) + 1}} av {{rightsentences.length}}</p>
             <div class="col-xs-12">
                 <h3>Skriv rätt Skiljetecken.</h3>
-                <h4>{{astrisksentence()}}</h4>
+                <h4>{{rightsentence | PunctuationQuestion}}</h4>
             </div>
             <form class="col-xs-12" method="post" ng-submit="checkstring()">
                 <div class="form-group">
@@ -33,6 +33,10 @@
                     </button>
                 </div>
             </form>
+            <button name="send" class="col-xs-4 btn btn-primary" ng-click="next()">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <span>Nästa</span>
+            </button>
         </div>
     </div>
 </div>

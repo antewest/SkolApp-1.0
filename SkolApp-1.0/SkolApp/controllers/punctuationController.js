@@ -1,45 +1,41 @@
 ﻿
-SkolApp.controller("punctuationController", ["$scope", "$sce", function ($scope, $sce) {
-    var punctuation = [".", "?", ",", "!"];
+SkolApp.controller("punctuationController",
+    ["$scope", "$sce", "PunctuationChecker", "Points", "PunctuationAnswerFilter", "PunctuationQuestionFilter",
+    function ($scope, $sce, PunctuationChecker, Points) {
 
-    $scope.rightsentence = "I have a hamster, a dog, and a cat.";
+        // to get from repository
+        // only this is needed for the system to work.
+        $scope.rightsentences = [
+            "I have a hamster, a dog, and a cat.",
+            "Spain is a beautiful country; the beaches are warm, sandy and spotlessly clean.",
+            "The children's books were all left in the following places: Mrs Smith's room, Mr Powell's office and the caretaker's cupboard.",
+            "She always enjoyed sweets, chocolate, marshmallows and toffee apples.",
+            "Sarah's uncle's car was found without its wheels in that old, derelict warehouse."
+        ];
 
-    $scope.answersentence = "";
+        $scope.rightsentence = $scope.rightsentences[0];
 
-    $scope.astrisksentence = function () {
-        var temp1 = $scope.rightsentence;
-        
-        var temp2 = "";
-        
-        for (var i = 0; i < temp1.length; i++) {
-            if (punctuation.indexOf(temp1[i]) != -1)
-                temp2 += "*";
-            else
-                temp2 += temp1[i];
+
+        $scope.next = function () {
+            if ($scope.rightsentence == $scope.answersentence) {
+                var indexOfCurrentSentence = $scope.rightsentences.indexOf($scope.rightsentence);
+                if (indexOfCurrentSentence < ($scope.rightsentences.length - 1)) {
+                    $scope.answersentence = "";
+                    $scope.rightsentence = $scope.rightsentences[indexOfCurrentSentence + 1];
+                    Points.addPoints(1);
+                    console.log("Points:" + Points.TotalPoints);
+                }
+                else {
+                    $scope.rightsentence = "Done.";
+                    console.log("finished");
+                    console.log("Points:" + Points.TotalPoints);
+                }
+
+                $scope.answersentenceView = "";
+            }
         };
-        return temp2;
-    };
 
-    $scope.checkstring = function () {
-        var string = "";
-        var newstring = [];
-
-        angular.forEach($scope.rightsentence, function (value, key, obj) {
-            if (obj[key] != $scope.answersentence[key] && punctuation.indexOf($scope.rightsentence[key]) != -1)
-            {
-                    this.push("<span class='orange'>" + value + "</span>");
-            }
-            else if (obj[key] == $scope.answersentence[key] && punctuation.indexOf($scope.answersentence[key]) != -1) {
-                this.push("<span class='green'>" + value + "</span>");
-            }
-            else
-                this.push(value);
-        }, newstring);
-
-        angular.forEach(newstring, function (value, key) {
-                string += value;
-        });
-        
-        $scope.answersentenceView = string == "" ? $scope.rightsentence : string;
-    };
-}]);
+        $scope.checkstring = function () {
+            $scope.answersentenceView = $scope.answersentence;
+        };
+    }]);
