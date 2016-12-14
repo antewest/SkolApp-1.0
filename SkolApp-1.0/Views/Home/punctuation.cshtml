@@ -4,15 +4,10 @@
 
 <h2 class="header">Skiljetecken.</h2>
 
-<div class="row" ng-app="SkolApp" ng-cloak>
+<div class="row">
     <div class="col-xs-12" ng-controller="punctuationController">
         <div class="col-md-6 col-sm-6 col-xs-12 no-space">
-            <div>
-                <h3></h3>
-            </div><br />
-            <div class="answertext" ng-bind-html="answersentenceView | PunctuationAnswer:rightsentence">
-            </div>
-
+            <div class="answertext" ng-bind-html="answersentenceView | PunctuationAnswer:rightsentence"></div>
         </div>
 
         <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
