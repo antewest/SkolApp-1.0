@@ -1,13 +1,14 @@
 ﻿(function () {
-    var TaskProvider = function ($http, Points) {
+    var TaskProvider = function ($http, Points, Scores) {
         var data = [];
         var index = -1;
-
+        var task = "";
         var iferror = function (response) {
             console.error("TaskProvider -> getTask -> \n" + response.statusText);
         }
 
         var getTask = function (action) {
+            task = action;
             return $http.get("/Home/" + action + "/").then(function (response) {
                 data = response.data;
                 return true;
@@ -28,7 +29,12 @@
             }
             else
             {
-                alert("You scored:" + Points.TotalPoints + "\nOut of:" + getlength().Last);
+                if (confirm("You scored:" + Points.TotalPoints + "\nOut of:" + getlength().Last + "\nDo you want to add your score?"))
+                {
+                    var nickname = prompt("Enter Nickname:");
+                    Scores.SetScore(nickname, task, Points.TotalPoints);
+                }
+                
             }
         }
 
@@ -51,6 +57,7 @@
        [
            "$http",
            "Points",
+           "Scores",
            TaskProvider
        ]
        );

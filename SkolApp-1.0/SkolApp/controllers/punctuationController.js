@@ -1,7 +1,7 @@
 ﻿(function () {
-    var punctuationController = function ($scope, Points, TaskProvider, GetScores) {
+    var punctuationController = function ($scope, Points, TaskProvider, Scores) {
 
-        GetScores.TopScores(10, "punctuation").then(function (response) {
+        Scores.GetTopScores(10, "GetPunctuations").then(function (response) {
             $scope.scores = response;
         })
 
@@ -52,7 +52,7 @@
             "$scope",
             "Points",
             "TaskProvider",
-            "GetScores",
+            "Scores",
             "PunctuationAnswerFilter",
             "PunctuationQuestionFilter",
             punctuationController

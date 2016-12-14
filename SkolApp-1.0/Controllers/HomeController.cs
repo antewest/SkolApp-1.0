@@ -1,4 +1,5 @@
 ﻿using SkolApp_1._0.Models;
+using SkolApp_1._0.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,12 @@ namespace SkolApp_1._0.Controllers
 {
     public class HomeController : Controller
     {
+        private SchoolRepo _repo;
+
+        public HomeController()
+        {
+            this._repo = new SchoolRepo();
+        }
         public ActionResult Index()
         {
             return View();
@@ -44,12 +51,21 @@ namespace SkolApp_1._0.Controllers
 
         public JsonResult GetScores(int limit, string task)
         {
-            List<UserScores> scores = new List<UserScores>();
-            scores.Add(new UserScores { NickName = "Test1", Points = 10, MaxPoints = 20 });
-            scores.Add(new UserScores { NickName = "Test2", Points = 5, MaxPoints = 20 });
-            scores.Add(new UserScores { NickName = "Test3", Points = 7, MaxPoints = 20 });
-            scores.Add(new UserScores { NickName = "Test4", Points = 9, MaxPoints = 20 });
-            return Json(scores, JsonRequestBehavior.AllowGet);
+            /*
+            List<UserScore> scores = new List<UserScore>();
+            scores.Add(new UserScore { NickName = "Test1", Points = 10});
+            scores.Add(new UserScore { NickName = "Test2", Points = 5});
+            scores.Add(new UserScore { NickName = "Test3", Points = 7});
+            scores.Add(new UserScore { NickName = "Test4", Points = 9});
+            scores = scores.OrderBy(s => s.Points).ToList();
+            //scores.Sort((x, y) => x.Points.CompareTo(y.Points));*/
+            return Json(_repo.GetTopScoresFromTask(limit, task), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AddScore(UserScore score)
+        {
+            _repo.AddScore(score);
+            return Json(score, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Punctuation()
