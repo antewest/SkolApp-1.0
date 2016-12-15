@@ -13,6 +13,7 @@ namespace SkolApp_1._0.Models
         public ColorModel()
         {
             ColorDictionary = new Dictionary<string, string>();
+
             ColorDictionary.Add("Röd", ColorTranslator.ToHtml(Color.Red));
             ColorDictionary.Add("Blå", ColorTranslator.ToHtml(Color.Blue));
             ColorDictionary.Add("Grön", ColorTranslator.ToHtml(Color.Green));

@@ -4,30 +4,29 @@
 
 <h2 class="header">Ord och färg</h2>
 
-<div class="row" ng-controller="ColorController" ng-init="GetColor()">
-    <div class="col-xs-12">
-        <div class="col-md-6 col-sm-6 col-xs-12 no-space">
-            <div class="col-xs-12 text-wrapper" style="background-image: url('/Media/fargburkar.jpg')">
-                <div class="overlay orange"></div>
-                <h3 class="box-text">
-                    <span>{{types[0].Key}}</span>
-                </h3>
+<div ng-controller="WordAndColorController">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12 no-space">
+                <div class="col-xs-12 text-wrapper">
+                    <p>{{Question}}</p>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
+                <p class="col-xs-12">Färg {{TaskIndex}} av {{AmountOfTasks}}</p>
+
+                <h3 class="col-xs-12">Vilken färg?</h3>
+                <form class="col-xs-12" method="post" ng-submit="CheckTask()">
+                    <div class="form-group">
+                        <button type="submit" name="send" class="col-xs-4 btn" style="background-color: {{CurrentTask[0].Answer}}; padding:40px" ng-click="User.Input = CurrentTask[0]"></button>
+                        <button type="submit" name="send" class="col-xs-4 btn" style="background-color: {{CurrentTask[1].Answer}}; padding:40px" ng-click="User.Input = CurrentTask[1]"></button>
+                        <button type="submit" name="send" class="col-xs-4 btn" style="background-color: {{CurrentTask[2].Answer}}; padding:40px" ng-click="User.Input = CurrentTask[2]"></button>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-            <p class="col-xs-12">Ord {{numberAnswered}} av {{numberOfColors}}</p>
-            <p class="col-xs-12">Du har {{points}} poäng av {{numberAnswered}} möjliga</p>
-
-            <h3 class="col-xs-12">Vilken färg?</h3>
-
-            <form class="col-xs-12" method="post">
-                <div class="form-group">
-                    <button type="submit" name="send" class="col-xs-4 btn" style="background-color: {{color1}}; padding:40px" ng-click="Answer(0)"></button>
-                    <button type="submit" name="send" class="col-xs-4 btn" style="background-color: {{color2}}; padding:40px" ng-click="Answer(1)"></button>
-                    <button type="submit" name="send" class="col-xs-4 btn" style="background-color: {{color3}}; padding:40px" ng-click="Answer(2)"></button>
-                </div>
-            </form>
-        </div>
     </div>
+
+    @Html.Partial("_ScoreTable")
 </div>

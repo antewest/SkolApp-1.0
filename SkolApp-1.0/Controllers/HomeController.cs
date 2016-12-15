@@ -49,6 +49,15 @@ namespace SkolApp_1._0.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetColors()
+        {
+            List<QuestionModel> colors = new List<QuestionModel>();
+            foreach (var item in new ColorModel().ColorDictionary)
+                colors.Add(new QuestionModel { Question = item.Key, Answer = item.Value });
+
+            return Json(colors, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetScores(int limit, string task)
         {
             /*
@@ -71,14 +80,6 @@ namespace SkolApp_1._0.Controllers
         public ActionResult Punctuation()
         {
             return View();
-        }
-
-
-        public JsonResult GetColors()
-        {
-            var model = new ColorModel();
-
-            return Json(model.ColorDictionary.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ColorAndText()

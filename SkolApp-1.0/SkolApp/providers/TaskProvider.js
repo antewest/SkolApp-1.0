@@ -17,12 +17,17 @@
             });
         }
 
-        var Getnext = function (PassedTest) {
+        var Getnext = function (PassedTest, GetAll) {
             if (PassedTest)
                 Points.AddPoints(1);
 
             if (data.length == 0)
                 return null;
+
+            if (GetAll === true) {
+                index += 1;
+                return data;
+            }
 
             if(index < data.length - 1)
             {
