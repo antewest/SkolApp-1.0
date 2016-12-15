@@ -1,5 +1,4 @@
-﻿
-(function () {
+﻿(function () {
 
     var scores = function ($http) {
         var topscores = function (limit, task) {
@@ -10,7 +9,7 @@
                 }
             }).then(function (response) {
                 return response.data;
-            })
+            });
         }
 
         var setscore = function (nickname, task, points) {
@@ -24,8 +23,7 @@
             return $http.post('/Home/AddScore/', { score: tempobj }).then(function (response) {
                 alert("Din poäng har lagts till.");
                 window.location.reload();
-            })
-
+            });
         }
 
         return {
@@ -34,6 +32,9 @@
         }
     }
 
-    angular.module("SkolApp").factory("Scores", ["$http", scores]);
+    angular.module("SkolApp").factory("Scores", [
+        "$http",
+        scores
+    ]);
 
 }());

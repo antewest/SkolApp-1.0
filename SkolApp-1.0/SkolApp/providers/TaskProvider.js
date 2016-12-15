@@ -1,8 +1,10 @@
 ﻿(function () {
+
     var TaskProvider = function ($http, Points, Scores) {
         var data = [];
         var index = -1;
         var task = "";
+
         var iferror = function (response) {
             console.error("TaskProvider -> getTask -> \n" + response.statusText);
         }
@@ -52,13 +54,10 @@
         };
     };
 
-    angular.module("SkolApp").factory(
-       "TaskProvider",
-       [
-           "$http",
-           "Points",
-           "Scores",
-           TaskProvider
-       ]
-       );
+    angular.module("SkolApp").factory("TaskProvider", [
+        "$http",
+        "Points",
+        "Scores",
+        TaskProvider
+    ]);
 }());

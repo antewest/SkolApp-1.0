@@ -7,7 +7,7 @@
 
         var UpdateTask = function (PassedTest) {
             $scope.CurrentTask = TaskProvider.GetNext(PassedTest);
-            $scope.TaskIndex = TaskProvider.GetCount().Current;
+            $scope.TaskIndex = TaskProvider.GetCount().Current + 1;
             $scope.User.Input = '';
         }
 
@@ -46,16 +46,13 @@
         };
     };
 
-    angular.module("SkolApp").controller(
-        "punctuationController",
-        [
-            "$scope",
-            "Points",
-            "TaskProvider",
-            "Scores",
-            "PunctuationAnswerFilter",
-            "PunctuationQuestionFilter",
-            punctuationController
-        ]
-        );
+    angular.module("SkolApp").controller("punctuationController", [
+        "$scope",
+        "Points",
+        "TaskProvider",
+        "Scores",
+        "PunctuationAnswerFilter",
+        "PunctuationQuestionFilter",
+        punctuationController
+    ]);
 }());

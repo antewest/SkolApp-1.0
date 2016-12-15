@@ -1,9 +1,13 @@
 ﻿(function () {
-    SkolApp.controller("WordAndImageController", ["$scope", "$http", "TaskProvider", function ($scope, $http, TaskProvider) {
+    var WordAndImageController = function ($scope, $http, TaskProvider, Scores) {
+
+        Scores.GetTopScores(10, "GetWordAndImage").then(function (response) {
+            $scope.scores = response;
+        })
 
         var UpdateTask = function (PassedTest) {
             $scope.CurrentTask = TaskProvider.GetNext(PassedTest);
-            $scope.TaskIndex = TaskProvider.GetCount().Current;
+            $scope.TaskIndex = TaskProvider.GetCount().Current + 1;
             $scope.User.Input = '';
         }
 
@@ -18,8 +22,7 @@
 
         $scope.CheckTask = function () {
             var PassedTest = false;
-            if ($scope.User.Input.length <= 0)
-            {
+            if ($scope.User.Input.length <= 0) {
                 alert("Du måste skriva något innan du kan rätta.");
                 return;
             }
@@ -41,7 +44,14 @@
         $scope.User = {
             Input: ""
         };
+    }
 
-    }]);
+    angular.module("SkolApp").controller("WordAndImageController", [
+        "$scope",
+        "$http",
+        "TaskProvider",
+        "Scores",
+        WordAndImageController
+    ]);
 
 }());

@@ -2,7 +2,6 @@
     ViewBag.Title = "Skiljetecken";
 }
 
-
 <div ng-controller="punctuationController">
     <div class="row">
         <h2 class="header">Skiljetecken:</h2>
@@ -12,7 +11,7 @@
             </div>
 
             <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-                <p class="col-xs-12">Text {{TaskIndex + 1}} av {{AmountOfTasks}}</p>
+                <p class="col-xs-12">Text {{TaskIndex}} av {{AmountOfTasks}}</p>
                 <div class="col-xs-12">
                     <h3>Skriv rätt Skiljetecken.</h3>
                     <h4>{{CurrentTask.Question | PunctuationQuestion}}</h4>
@@ -32,31 +31,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <h2 class="header">Poäng:</h2>
-        <div class="col-xs-12">
-            <table class="col-sm-6 col-xs-12">
-                <thead>
-                    <tr class="col-xs-12">
-                        <th class="col-xs-4">
-                            Plats
-                        </th>
-                        <th class="col-xs-4">
-                            NickName
-                        </th>
-                        <th class="col-xs-4">
-                            Poäng
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="(key, val) in scores" class="col-xs-12">
-                        <td class="col-xs-4">{{key+1}}</td>
-                        <td class="col-xs-4">{{val.NickName}}</td>
-                        <td class="col-xs-4">{{val.Points}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    
+    @Html.Partial("_ScoreTable")
 </div>
