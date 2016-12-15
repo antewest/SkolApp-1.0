@@ -1,8 +1,30 @@
-﻿
-SkolApp.factory("PunctuationChecker", function () {
-    return {
-        isRight: function (sentence1, sentence2) {
-            return sentence1 == sentence2;
+﻿(function () {
+
+    var punctuationchecker = function () {
+
+        var checkasnwer = function (input, rightanswer) {
+
+            input = input || '';
+            rightanswer = rightanswer || '';
+            if (input == '' || rightanswer == '')
+                return 0;
+
+            var punctuation = [".", "?", ",", "!"];
+
+            var score = 0;
+
+            angular.forEach(input, function (value, key, obj) {
+                if (rightanswer[key] == value && punctuation.indexOf(value) != -1)
+                    score += 1
+            });
+
+            return score;
+        }
+
+        return {
+            CheckAnswer: checkasnwer
         }
     };
-})
+
+    angular.module("SkolApp").factory("PunctuationChecker", punctuationchecker)
+}());

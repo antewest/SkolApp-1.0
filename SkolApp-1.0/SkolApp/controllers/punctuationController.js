@@ -1,12 +1,11 @@
 ﻿(function () {
-    var punctuationController = function ($scope, TaskProvider, Scores) {
-
+    var punctuationController = function ($scope, TaskProvider, Scores, PunctuationChecker) {
         Scores.GetTopScores(10, "GetPunctuations").then(function (response) {
             $scope.scores = response;
         })
 
-        var UpdateTask = function (PassedTest) {
-            $scope.CurrentTask = TaskProvider.GetNext(PassedTest);
+        var UpdateTask = function (PassedTest, points) {
+            $scope.CurrentTask = TaskProvider.GetNext(PassedTest, points);
             $scope.TaskIndex = TaskProvider.GetCount().Current + 1;
             $scope.User.Input = '';
         }
@@ -16,7 +15,7 @@
         }
 
         TaskProvider.GetTask("GetPunctuations").then(function (response) {
-            UpdateTask(false);
+            UpdateTask(false, 0);
             $scope.AmountOfTasks = TaskProvider.GetCount().Last;
         });
 
@@ -26,8 +25,9 @@
                 alert("Du måste skriva något innan du kan rätta.");
                 return;
             }
-
-            if ($scope.CurrentTask.Question.toLowerCase() == $scope.User.Input.toLowerCase()) {
+            // Task Checker
+            var points = PunctuationChecker.CheckAnswer($scope.User.Input, $scope.CurrentTask.Question);
+            if (points != 0) {
                 alert("Rätt svar!");
                 PassedTest = true;
             }
@@ -35,7 +35,7 @@
                 alert("Tyvärr, det är fel svar :(");
             }
 
-            UpdateTask(PassedTest);
+            UpdateTask(PassedTest, points);
         }
 
         $scope.CurrentTask = {};
@@ -50,6 +50,7 @@
         "$scope",
         "TaskProvider",
         "Scores",
+        "PunctuationChecker",
         "PunctuationAnswerFilter",
         "PunctuationQuestionFilter",
         punctuationController
