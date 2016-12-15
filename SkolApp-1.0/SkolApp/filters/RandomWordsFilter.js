@@ -22,9 +22,6 @@
             }
             while (words == splitinput)
 
-            console.log(words);
-            console.log(splitinput);
-
             return words.join(' ');
         };
 
