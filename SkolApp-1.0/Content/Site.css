@@ -145,10 +145,11 @@ footer p
 .text-wrapper
 {
     border: 1px solid #DDDDDD;
-    padding: 5px;
+    padding: 10px;
+    min-height: 250px;
 }
 
-.text-wrapper p
+.text-wrapper p, .text-wrapper h1, .text-wrapper h2, .text-wrapper h3, .text-wrapper h4, .text-wrapper h5, .text-wrapper h6
 {
     padding: 0;
     margin: 0;
@@ -156,5 +157,55 @@ footer p
 
 .text-wrapper p + p
 {
-    margin-top: 15px;
+    margin-top: 20px;
+}
+
+.answer-btn
+{
+    box-sizing: border-box;
+    padding: 40px 0;
+    border: 1px solid #333333;
+    outline: 0;
+    display: inline-block;
+
+    transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+}
+
+.answer-btn:hover
+{
+    transform: scale(1.15);
+    z-index: 5;
+}
+
+.score-table-wrapper
+{
+    margin-top: 50px;
+}
+
+.score-table
+{
+    border: 1px solid #DDDDDD;
+}
+
+.score-table td, .score-table th
+{
+    padding: 10px 10px 0 10px;
+}
+
+.score-table thead tr th
+{
+    color: #444444;
+    font-size: 20px;
+    
+}
+
+.score-table tbody tr:nth-child(2n -1)
+{
+    background: #DDDDDD;
+}
+
+.score-table tbody tr td
+{
+    font-size: 16px;
 }

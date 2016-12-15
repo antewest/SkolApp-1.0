@@ -26,7 +26,7 @@
                 alert("Du måste skriva något innan du kan rätta.");
                 return;
             }
-            // Task Checker
+            
             var points = PunctuationChecker.CheckAnswer($scope.User.Input, $scope.CurrentTask.Question);
             if (points != 0) {
                 alert("Rätt svar!");

@@ -2,14 +2,14 @@
     ViewBag.Title = "Ord och färg";
 }
 
-<h2 class="header">Ord och färg</h2>
-
 <div ng-controller="WordAndColorController">
+    <h2 class="header">Ord och färg</h2>
+
     <div class="row">
         <div class="col-xs-12">
             <div class="col-md-6 col-sm-6 col-xs-12 no-space">
                 <div class="col-xs-12 text-wrapper">
-                    <p>{{Question}}</p>
+                    <h3>Vilken av knapparna är {{Question}}?</h3>
                 </div>
             </div>
 
@@ -19,9 +19,9 @@
                 <h3 class="col-xs-12">Vilken färg?</h3>
                 <form class="col-xs-12" method="post" ng-submit="CheckTask()">
                     <div class="form-group">
-                        <button type="submit" name="send" class="col-xs-4 btn" style="background-color: {{CurrentTask[0].Answer}}; padding:40px" ng-click="User.Input = CurrentTask[0]"></button>
-                        <button type="submit" name="send" class="col-xs-4 btn" style="background-color: {{CurrentTask[1].Answer}}; padding:40px" ng-click="User.Input = CurrentTask[1]"></button>
-                        <button type="submit" name="send" class="col-xs-4 btn" style="background-color: {{CurrentTask[2].Answer}}; padding:40px" ng-click="User.Input = CurrentTask[2]"></button>
+                        <button type="submit" name="send" class="col-xs-4 answer-btn" style="background-color:{{CurrentTask[0].Answer}}" ng-click="User.Input = CurrentTask[0]"></button>
+                        <button type="submit" name="send" class="col-xs-4 answer-btn" style="background-color:{{CurrentTask[1].Answer}}" ng-click="User.Input = CurrentTask[1]"></button>
+                        <button type="submit" name="send" class="col-xs-4 answer-btn" style="background-color:{{CurrentTask[2].Answer}}" ng-click="User.Input = CurrentTask[2]"></button>
                     </div>
                 </form>
             </div>
