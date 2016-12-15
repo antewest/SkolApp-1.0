@@ -17,31 +17,29 @@
             });
         }
 
-        var Getnext = function (PassedTest, GetAll) {
+        var Getnext = function (PassedTest, points, GetAll) {
             if (PassedTest)
-                Points.AddPoints(1);
+                Points.AddPoints(points);
 
             if (data.length == 0)
                 return null;
 
-            if (GetAll === true) {
-                index += 1;
-                return data;
-            }
-
-            if(index < data.length - 1)
+            index += 1;
+            if (index < data.length)
             {
-                index += 1;
+                if (GetAll === true)
+                    return data;
+
                 return data[index];
-            }
+            }  
             else
             {
+                index -= 1;
                 if (confirm("You scored:" + Points.TotalPoints + "\nOut of:" + getlength().Last + "\nDo you want to add your score?"))
                 {
                     var nickname = prompt("Enter Nickname:");
                     Scores.SetScore(nickname, task, Points.TotalPoints);
                 }
-                
             }
         }
 

@@ -1,22 +1,21 @@
 ﻿@{
-    ViewBag.Title = "Skiljetecken";
+    ViewBag.Title = "Hitta Orden";
 }
 
-<div ng-controller="PunctuationController">
+
+<div ng-controller="FindTheWordsController">
     <div class="row">
-        <h2 class="header">Skiljetecken:</h2>
+        <h2 class="header">Hitta Orden:</h2>
         <div class="col-xs-12">
             <div class="col-md-6 col-sm-6 col-xs-12 no-space">
-                <div class="text-wrapper">
-                    <div class="answertext" ng-bind-html="User.Input | PunctuationAnswer:CurrentTask.Question"></div>
-                </div>
+                <div class="answertext" ng-bind-html="User.Input | FindTheWordsAnswer:CurrentTask.Question"></div>
             </div>
 
             <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
                 <p class="col-xs-12">Text {{TaskIndex}} av {{AmountOfTasks}}</p>
                 <div class="col-xs-12">
-                    <h3>Skriv rätt Skiljetecken.</h3>
-                    <h4>{{CurrentTask.Question | PunctuationQuestion}}</h4>
+                    <h3>Skriv rätt Orden.</h3>
+                    <h4>{{CurrentTask.Question | RandomWords}}</h4>
                 </div>
                 <form class="col-xs-12" method="post" ng-submit="CheckTask()">
                     <div class="form-group">

@@ -30,8 +30,8 @@ namespace SkolApp_1._0
                       "~/Scripts/angular-route.js",
                       "~/SkolApp/*.js",
                       "~/SkolApp/providers/*.js",
-                      "~/SkolApp/filters/*.js",
                       "~/SkolApp/controllers/*.js",
+                      "~/SkolApp/filters/*.js",
                       "~/SkolApp/directives/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

@@ -1,12 +1,12 @@
 ﻿(function () {
-    var PunctuationController = function ($scope, TaskProvider, Scores) {
 
-        Scores.GetTopScores(10, "GetPunctuations").then(function (response) {
+    var findthewordsController = function ($scope, TaskProvider, Scores, FindTheWords) {
+        Scores.GetTopScores(10, "GetFindTheWords").then(function (response) {
             $scope.scores = response;
         })
 
-        var UpdateTask = function (PassedTest) {
-            $scope.CurrentTask = TaskProvider.GetNext(PassedTest, 1);
+        var UpdateTask = function (PassedTest, points) {
+            $scope.CurrentTask = TaskProvider.GetNext(PassedTest, points);
             $scope.TaskIndex = TaskProvider.GetCount().Current + 1;
             $scope.User.Input = '';
         }
@@ -15,27 +15,30 @@
             console.error(response.statusText);
         }
 
-        TaskProvider.GetTask("GetPunctuations").then(function (response) {
-            UpdateTask(false);
+        TaskProvider.GetTask("GetFindTheWords").then(function (response) {
+            UpdateTask(false, 0);
             $scope.AmountOfTasks = TaskProvider.GetCount().Last;
         });
 
         $scope.CheckTask = function () {
             var PassedTest = false;
+            
             if ($scope.User.Input.length <= 0) {
                 alert("Du måste skriva något innan du kan rätta.");
                 return;
             }
-
-            if ($scope.CurrentTask.Question.toLowerCase() == $scope.User.Input.toLowerCase()) {
+            // Task Checker
+            var points = FindTheWords.CheckAnswer($scope.User.Input, $scope.CurrentTask.Question);
+            if (points != 0) {
                 alert("Rätt svar!");
                 PassedTest = true;
             }
+
             else {
                 alert("Tyvärr, det är fel svar :(");
             }
 
-            UpdateTask(PassedTest);
+            UpdateTask(PassedTest, points);
         }
 
         $scope.CurrentTask = {};
@@ -46,12 +49,16 @@
         };
     };
 
-    angular.module("SkolApp").controller("PunctuationController", [
+
+
+
+    angular.module("SkolApp").controller("FindTheWordsController", [
         "$scope",
         "TaskProvider",
         "Scores",
-        "PunctuationAnswerFilter",
-        "PunctuationQuestionFilter",
-        PunctuationController
+        "FindTheWords",
+        "FindTheWordsAnswerFilter",
+        findthewordsController
     ]);
+
 }());

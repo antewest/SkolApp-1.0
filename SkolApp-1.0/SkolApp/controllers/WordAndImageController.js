@@ -6,7 +6,7 @@
         })
 
         var UpdateTask = function (PassedTest) {
-            $scope.CurrentTask = TaskProvider.GetNext(PassedTest);
+            $scope.CurrentTask = TaskProvider.GetNext(PassedTest, 1);
             $scope.TaskIndex = TaskProvider.GetCount().Current + 1;
             $scope.User.Input = '';
         }
