@@ -12,17 +12,18 @@ SkolApp.filter("PunctuationAnswer", [function () {
 
         input = input.toUpperCase();
         answer = answer.toUpperCase();
-        var string = "";
         var newstring = [];
-        var punctuation = [".", "?", ",", "!"];
+        //var punctuation = [".", "?", ",", "!"];
 
         angular.forEach(answer, function (value, key, obj) {
             if (input[key] != value) { // wrong
                 if (lastrightIndex == (key - 1))
                     this.push("</span>");
 
-                if (lastfalseIndex == (key - 1))
+                if (lastfalseIndex == (key - 2))
                     this.push(value);
+                else if(lastfalseIndex == (obj.length - 2))
+                    this.push(value + "</span>");
                 else
                     this.push("<span class='orange'>" + value);
                 //console.log("false:"+lastfalseIndex);
@@ -31,8 +32,11 @@ SkolApp.filter("PunctuationAnswer", [function () {
             else { // right
                 if (lastfalseIndex == (key - 1))
                     this.push("</span>");
-                else if (lastrightIndex == (key - 1))
+
+                if (lastrightIndex == (key - 2))
                     this.push(value);
+                else if(lastrightIndex == (obj.length - 2))
+                    this.push(value + "</span>");
                 else
                     this.push("<span class='green'>" + input[key] + "</span>");
 
@@ -42,10 +46,7 @@ SkolApp.filter("PunctuationAnswer", [function () {
                 
         }, newstring);
 
-        angular.forEach(newstring, function (value, key) {
-            string += value;
-        });
 
-        return string;
+        return newstring.join('');
     }
 }]);

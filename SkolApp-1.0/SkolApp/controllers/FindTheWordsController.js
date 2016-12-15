@@ -1,5 +1,4 @@
 ﻿(function () {
-
     var findthewordsController = function ($scope, TaskProvider, Scores, FindTheWords) {
         Scores.GetTopScores(10, "GetFindTheWords").then(function (response) {
             $scope.scores = response;
@@ -22,18 +21,16 @@
 
         $scope.CheckTask = function () {
             var PassedTest = false;
-            
             if ($scope.User.Input.length <= 0) {
                 alert("Du måste skriva något innan du kan rätta.");
                 return;
             }
             // Task Checker
-            var points = FindTheWords.CheckAnswer($scope.User.Input, $scope.CurrentTask.Question);
+            var points = FindTheWords.CheckAnswer($scope.User.Input.toLowerCase(), $scope.CurrentTask.Question.toLowerCase());
             if (points != 0) {
                 alert("Rätt svar!");
                 PassedTest = true;
             }
-
             else {
                 alert("Tyvärr, det är fel svar :(");
             }
@@ -48,9 +45,6 @@
             Input: ""
         };
     };
-
-
-
 
     angular.module("SkolApp").controller("FindTheWordsController", [
         "$scope",
