@@ -49,6 +49,19 @@ namespace SkolApp_1._0.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetFindTheWords()
+        {
+            List<QuestionModel> list = new List<QuestionModel>();
+
+            list.Add(new QuestionModel { Question = "Tack, hör du! Sköldpaddorna var jättegoda!" });
+            list.Add(new QuestionModel { Question = "Du klär i purpur!" });
+            list.Add(new QuestionModel { Question = "Bilen är skitig. Du borde tvätta den." });
+            list.Add(new QuestionModel { Question = "jordskalv hydda svåger pannå" });
+            list.Add(new QuestionModel { Question = "själisk svag tydning slutrim" });
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetScores(int limit, string task)
         {
             /*
@@ -66,6 +79,11 @@ namespace SkolApp_1._0.Controllers
         {
             _repo.AddScore(score);
             return Json(score, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult FindTheWords()
+        {
+            return View();
         }
 
         public ActionResult Punctuation()

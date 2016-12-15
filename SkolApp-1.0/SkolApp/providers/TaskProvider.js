@@ -17,9 +17,9 @@
             });
         }
 
-        var Getnext = function (PassedTest) {
+        var Getnext = function (PassedTest, points) {
             if (PassedTest)
-                Points.AddPoints(1);
+                Points.AddPoints(points);
 
             if (data.length == 0)
                 return null;
