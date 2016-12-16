@@ -17,11 +17,24 @@ namespace SkolApp_1._0.Repository
             this.db = new SchoolContext();
         }
 
-        public IEnumerable<UserScore> GetTopScoresFromTask(int limit, string task)
+        public IEnumerable<UserScore> GetTopScoresFromTask(int limit, int challengeId)
         {
-            IEnumerable<UserScore> scores = db.UserScores.Where(s => s.Task.ToLower() == task.ToLower()).Take(limit).OrderByDescending(s => s.Points);
+            IEnumerable<UserScore> scores = db.UserScores.Where(s => s.ChallengeId == challengeId).Take(limit).OrderByDescending(s => s.Points);
 
             return scores;
+        }
+
+        public IEnumerable<ChallengeModel> GetChallenges()
+        {
+            return db.Challenges;
+        }
+
+        public ChallengeModel GetChallenge(int? id)
+        {
+            if (id == null)
+                id = 1;
+
+            return db.Challenges.Include("Questions").First(c => c.Id == id);
         }
 
         public void AddScore(UserScore score)

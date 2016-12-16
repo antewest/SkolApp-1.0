@@ -209,3 +209,22 @@ footer p
 {
     font-size: 16px;
 }
+
+.view-animate {
+
+}
+
+.view-animate.ng-enter, .view-animate.ng-leave {
+  transition:all ease-in-out 1s;
+
+}
+
+.view-animate.ng-enter {
+  opacity: 0;
+}
+.view-animate.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.view-animate.ng-leave.ng-leave-active {
+  opacity: 0;
+}

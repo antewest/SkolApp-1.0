@@ -1,25 +1,26 @@
 ﻿(function () {
 
     var scores = function ($http) {
-        var topscores = function (limit, task) {
+        var topscores = function (limit, challengeId) {
+            challengeId = challengeId || 1;
             return $http.get('/Home/GetScores/', {
                 params: {
                     Limit: limit,
-                    Task: task
+                    ChallengeId: challengeId
                 }
             }).then(function (response) {
-                return response.data;
+                return angular.fromJson(response.data);
             });
         }
 
-        var setscore = function (nickname, task, points) {
+        var setscore = function (nickname, challengeId, points) {
+            challengeId = challengeId || 1;
             var tempobj = {
                 Id: -1,
                 NickName: nickname,
                 Points: points,
-                Task: task
+                ChallengeId: challengeId
             }
-
             return $http.post('/Home/AddScore/', { score: tempobj }).then(function (response) {
                 alert("Din poäng har lagts till.");
                 window.location.reload();

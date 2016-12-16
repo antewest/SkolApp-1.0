@@ -1,0 +1,24 @@
+﻿<div class="score-table-wrapper">
+    <h2 class="header">Poäng:</h2>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="col-sm-6 col-xs-12 score-table">
+                <thead>
+                    <tr class="col-xs-12">
+                        <th class="col-xs-2">Plats</th>
+                        <th class="col-xs-8">NickName</th>
+                        <th class="col-xs-2">Poäng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key, val) in scores track by key" class="col-xs-12">
+                        <td class="col-xs-2">{{key+1}}</td>
+                        <td class="col-xs-8">{{val.NickName}}</td>
+                        <td class="col-xs-2">{{val.Points}}p</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

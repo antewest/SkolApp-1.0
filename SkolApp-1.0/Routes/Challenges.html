@@ -1,0 +1,31 @@
+﻿<div class="row">
+    <h2 class="header">Utmaningen:</h2>
+    <div class="col-xs-12">
+        <div class="col-md-6 col-sm-6 col-xs-12 no-space">
+            Other Challenges:
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Questions
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="challenge in challengeList" ng-if="challenge.QuestionsCount" ng-click='go(challenge.Id)' style="cursor:pointer;">
+                        <td><a ng-href="/Challenge/?id={{challenge.Id}}">{{challenge.QuestionsCount}}</a></td>
+                        <td><a ng-href="/Challenge/?id={{challenge.Id}}">{{challenge.Type}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="answertext" ng-bind-html="User.Input | FindTheWordsAnswer:CurrentTask.Question"></div>
+        </div>
+
+        <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
+            Random
+        </div>
+    </div>
+</div>

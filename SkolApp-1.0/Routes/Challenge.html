@@ -1,0 +1,15 @@
+﻿<h2 class="header">{{CurrentTask.Type.Name}}:</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <p class="col-xs-12">Text {{TaskIndex}} av {{AmountOfTasks}}</p>
+        <div ng-switch="CurrentTask.Type.Name">
+            <div ng-switch-when="Punctuation"><div ng-include="'/routes/Punctuation.html'"></div></div>
+            <div ng-switch-when="FindTheWords"><div ng-include="'/routes/FindTheWords.html'"></div></div>
+            <div ng-switch-when="ColorAndText"><div ng-include="'/routes/ColorAndText.html'"></div></div>
+            <div ng-switch-when="WordAndImage"><div ng-include="'/routes/WordAndImage.html'"></div></div>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'/routes/_ScoreTable.html'"></div>

@@ -1,13 +1,14 @@
 ﻿(function () {
+    var PunctuationController = function ($scope, $routeParams, TaskProvider, Scores, PunctuationChecker) {
+        var _taskProvider = new TaskProvider();
 
-    var PunctuationController = function ($scope, TaskProvider, Scores, PunctuationChecker) {
-        Scores.GetTopScores(10, "GetPunctuations").then(function (response) {
+        Scores.GetTopScores(10, $routeParams.id).then(function (response) {
             $scope.scores = response;
         })
 
         var UpdateTask = function (PassedTest, points) {
-            $scope.CurrentTask = TaskProvider.GetNext(PassedTest, points);
-            $scope.TaskIndex = TaskProvider.GetCount().Current + 1;
+            $scope.CurrentTask = _taskProvider.GetNext(PassedTest, points);
+            $scope.TaskIndex = _taskProvider.GetCount().Current + 1;
             $scope.User.Input = '';
         }
 
@@ -15,13 +16,15 @@
             console.error(response.statusText);
         }
 
-        TaskProvider.GetTask("GetPunctuations").then(function (response) {
+        _taskProvider.GetTask(1, $routeParams.id).then(function (response) {
             UpdateTask(false, 0);
-            $scope.AmountOfTasks = TaskProvider.GetCount().Last;
+            $scope.AmountOfTasks = _taskProvider.GetCount().Last;
         });
 
         $scope.CheckTask = function () {
             var PassedTest = false;
+            _taskProvider.AllowNext();
+
             if ($scope.User.Input.length <= 0) {
                 alert("Du måste skriva något innan du kan rätta.");
                 return;
@@ -49,6 +52,7 @@
 
     angular.module("SkolApp").controller("PunctuationController", [
         "$scope",
+        "$routeParams",
         "TaskProvider",
         "Scores",
         "PunctuationChecker",
