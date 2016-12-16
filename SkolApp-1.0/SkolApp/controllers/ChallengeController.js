@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    var challengeController = function ($scope, $routeParams, $location, TaskProvider, Scores, PunctuationChecker) {
+    var challengeController = function ($scope, $routeParams, $location, TaskProvider, Scores, Points) {
         var _taskProvider = new TaskProvider();
 
         Scores.GetTopScores(10, $routeParams.id).then(function (response) {
@@ -35,8 +35,9 @@
                 alert("Du måste skriva något innan du kan rätta.");
                 return;
             }
-
-            var points = PunctuationChecker.CheckAnswer($scope.User.Input, $scope.CurrentTask.Question);
+            
+            var points = Points.CalculatePoints($scope.CurrentTask.Type.Name, $scope.User.Input, $scope.CurrentTask.Answer);
+            debugger;
             if (points != 0) {
                 alert("Rätt svar!");
                 PassedTest = true;
@@ -62,7 +63,7 @@
         "$location",
         "TaskProvider",
         "Scores",
-        "PunctuationChecker",
+        "Points",
         "PunctuationAnswerFilter",
         "PunctuationQuestionFilter",
 

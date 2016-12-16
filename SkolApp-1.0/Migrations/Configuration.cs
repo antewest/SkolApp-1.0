@@ -28,7 +28,7 @@ namespace SkolApp_1._0.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            /*
+            
             context.QuestionTypes.AddOrUpdate(t => t.Id,
                 new QuestionTypeModel { Id = 1, Name = "Punctuation" },
                 new QuestionTypeModel { Id = 2, Name = "FindTheWords" },
@@ -56,17 +56,17 @@ namespace SkolApp_1._0.Migrations
                 );
            
             context.Questions.AddOrUpdate(q => q.Id,
-                new QuestionModel { Id = 1, ChallengeId = 1, Question = "I have a hamster, a dog, and a cat.", TypeId = 1 },
-                new QuestionModel { Id = 2, ChallengeId = 1, Question = "Spain is a beautiful country; the beaches are warm, sandy and spotlessly clean.", TypeId = 1 },
-                new QuestionModel { Id = 3, ChallengeId = 1, Question = "The children's books were all left in the following places: Mrs Smith's room, Mr Powell's office and the caretaker's cupboard.", TypeId = 1 },
-                new QuestionModel { Id = 4, ChallengeId = 1, Question = "She always enjoyed sweets, chocolate, marshmallows and toffee apples.", TypeId = 1 },
-                new QuestionModel { Id = 5, ChallengeId = 1, Question = "Sarah's uncle's car was found without its wheels in that old, derelict warehouse.", TypeId = 1 },
+                new QuestionModel { Id = 1, ChallengeId = 1, Question = "I have a hamster, a dog, and a cat.", Answer = "I have a hamster, a dog, and a cat.", TypeId = 1 },
+                new QuestionModel { Id = 2, ChallengeId = 1, Question = "Spain is a beautiful country; the beaches are warm, sandy and spotlessly clean.", Answer = "Spain is a beautiful country; the beaches are warm, sandy and spotlessly clean.", TypeId = 1 },
+                new QuestionModel { Id = 3, ChallengeId = 1, Question = "The children's books were all left in the following places: Mrs Smith's room, Mr Powell's office and the caretaker's cupboard.", Answer = "The children's books were all left in the following places: Mrs Smith's room, Mr Powell's office and the caretaker's cupboard.", TypeId = 1 },
+                new QuestionModel { Id = 4, ChallengeId = 1, Question = "She always enjoyed sweets, chocolate, marshmallows and toffee apples.", Answer = "She always enjoyed sweets, chocolate, marshmallows and toffee apples.", TypeId = 1 },
+                new QuestionModel { Id = 5, ChallengeId = 1, Question = "Sarah's uncle's car was found without its wheels in that old, derelict warehouse.", Answer = "Sarah's uncle's car was found without its wheels in that old, derelict warehouse.", TypeId = 1 },
 
-                new QuestionModel { Id = 6, ChallengeId = 2, Question = "Tack, hör du! Sköldpaddorna var jättegoda!", TypeId = 2 },
-                new QuestionModel { Id = 7, ChallengeId = 2, Question = "Du klär i purpur!", TypeId = 2 },
-                new QuestionModel { Id = 8, ChallengeId = 2, Question = "Bilen är skitig. Du borde tvätta den.", TypeId = 2 },
-                new QuestionModel { Id = 9, ChallengeId = 2, Question = "jordskalv hydda svåger pannå", TypeId = 2 },
-                new QuestionModel { Id = 10, ChallengeId = 2, Question = "själisk svag tydning slutrim", TypeId = 2 },
+                new QuestionModel { Id = 6, ChallengeId = 2, Question = "Tack, hör du! Sköldpaddorna var jättegoda!", Answer = "Tack, hör du! Sköldpaddorna var jättegoda!", TypeId = 2 },
+                new QuestionModel { Id = 7, ChallengeId = 2, Question = "Du klär i purpur!", Answer = "Du klär i purpur!", TypeId = 2 },
+                new QuestionModel { Id = 8, ChallengeId = 2, Question = "Bilen är skitig. Du borde tvätta den.", Answer = "Bilen är skitig. Du borde tvätta den.", TypeId = 2 },
+                new QuestionModel { Id = 9, ChallengeId = 2, Question = "jordskalv hydda svåger pannå", Answer = "jordskalv hydda svåger pannå", TypeId = 2 },
+                new QuestionModel { Id = 10, ChallengeId = 2, Question = "själisk svag tydning slutrim", Answer = "själisk svag tydning slutrim", TypeId = 2 },
 
                 new QuestionModel { Id = 11, ChallengeId = 3, Question = "Röd", Answer = ColorTranslator.ToHtml(Color.Red), TypeId = 3 },
                 new QuestionModel { Id = 12, ChallengeId = 3, Question = "Blå", Answer = ColorTranslator.ToHtml(Color.Blue), TypeId = 3 },
@@ -94,7 +94,7 @@ namespace SkolApp_1._0.Migrations
                 new QuestionModel { Id = 29, ChallengeId = 5, Question = "/Media/paint.jpg", Answer = "målar", TypeId = 4 },
                 new QuestionModel { Id = 30, ChallengeId = 5, Question = "Gul", Answer = ColorTranslator.ToHtml(Color.Yellow), TypeId = 3 }
                 );
-            context.SaveChanges(); */
+            context.SaveChanges(); 
         }
     }
 }

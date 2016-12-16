@@ -18,6 +18,7 @@ namespace SkolApp_1._0.Controllers
         {
             this._repo = new SchoolRepo();
         }
+
         public ActionResult Index()
         {
             return View();
