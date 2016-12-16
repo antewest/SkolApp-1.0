@@ -1,4 +1,5 @@
-﻿using SkolApp_1._0.Models;
+﻿using Newtonsoft.Json;
+using SkolApp_1._0.Models;
 using SkolApp_1._0.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace SkolApp_1._0.Controllers
     public class HomeController : Controller
     {
         private SchoolRepo _repo;
+        JsonSerializerSettings jss = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
 
         public HomeController()
         {
@@ -36,26 +38,25 @@ namespace SkolApp_1._0.Controllers
             return Json(test, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetPunctuations()
+        public ActionResult GetChallenge(int TypeId, int? Id)
         {
-            List<QuestionModel> list = new List<QuestionModel>();
+            if (Id == null)
+                return RedirectToAction("Index");
 
-            list.Add(new QuestionModel { Question = "I have a hamster, a dog, and a cat." });
-            list.Add(new QuestionModel { Question = "Spain is a beautiful country; the beaches are warm, sandy and spotlessly clean." });
-            list.Add(new QuestionModel { Question = "The children's books were all left in the following places: Mrs Smith's room, Mr Powell's office and the caretaker's cupboard." });
-            list.Add(new QuestionModel { Question = "She always enjoyed sweets, chocolate, marshmallows and toffee apples." });
-            list.Add(new QuestionModel { Question = "Sarah's uncle's car was found without its wheels in that old, derelict warehouse." });
+            ChallengeModel challenge = _repo.GetChallenge(Id);
 
-            return Json(list, JsonRequestBehavior.AllowGet);
+            // using this to ignore the infinite reference between QuestionModel and ChallengeModel
+            // because javascript objects can't handle infinite reference
+            var result = JsonConvert.SerializeObject(challenge, Formatting.Indented, jss);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetColors()
+        public JsonResult GetChallenges()
         {
-            List<QuestionModel> colors = new List<QuestionModel>();
-            foreach (var item in new ColorModel().ColorDictionary)
-                colors.Add(new QuestionModel { Question = item.Key, Answer = item.Value });
-
-            return Json(colors, JsonRequestBehavior.AllowGet);
+            List<ChallengeModel> challenges = _repo.GetChallenges().ToList();
+            var result = JsonConvert.SerializeObject(challenges, Formatting.Indented, jss);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetFindTheWords()
@@ -71,7 +72,7 @@ namespace SkolApp_1._0.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetScores(int limit, string task)
+        public JsonResult GetScores(int limit, int ChallengeId)
         {
             /*
             List<UserScore> scores = new List<UserScore>();
@@ -81,7 +82,10 @@ namespace SkolApp_1._0.Controllers
             scores.Add(new UserScore { NickName = "Test4", Points = 9});
             scores = scores.OrderBy(s => s.Points).ToList();
             //scores.Sort((x, y) => x.Points.CompareTo(y.Points));*/
-            return Json(_repo.GetTopScoresFromTask(limit, task), JsonRequestBehavior.AllowGet);
+            var scores = _repo.GetTopScoresFromTask(limit, ChallengeId).ToList();
+            var result = JsonConvert.SerializeObject(scores, Formatting.Indented, jss);
+            
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult AddScore(UserScore score)
@@ -103,6 +107,11 @@ namespace SkolApp_1._0.Controllers
         public ActionResult ColorAndText()
         {
             return View();
+        }
+
+        public ActionResult NotFound()
+        {
+            return RedirectToAction("Index");
         }
     }
 }

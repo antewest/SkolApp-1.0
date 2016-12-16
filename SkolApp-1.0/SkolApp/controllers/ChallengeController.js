@@ -1,5 +1,6 @@
 ﻿(function () {
-    var findthewordsController = function ($scope, $routeParams, TaskProvider, Scores, FindTheWords, Message) {
+
+    var challengeController = function ($scope, $routeParams, $location, TaskProvider, Scores, PunctuationChecker, Message) {
         var _taskProvider = new TaskProvider();
 
         Scores.GetTopScores(10, $routeParams.id).then(function (response) {
@@ -10,6 +11,11 @@
             $scope.CurrentTask = _taskProvider.GetNext(PassedTest, points);
             $scope.TaskIndex = _taskProvider.GetCount().Current + 1;
             $scope.User.Input = '';
+
+            if(!$scope.CurrentTask)
+            {
+               // $location.path("/Challenges/");
+            }
         }
 
         var OnError = function (response) {
@@ -24,16 +30,18 @@
         $scope.CheckTask = function () {
             var PassedTest = false;
             var title, message, type;
+            _taskProvider.AllowNext();
 
             if ($scope.User.Input.length <= 0) {
                 title = "Hoppsan!";
-                message = "Du måste skriva något innan du kan rätta.";
+                message = "Du måste välja något först.";
                 type = "error";
                 Message.DisplayMessage(title, message, type);
                 return;
             }
 
-            var points = FindTheWords.CheckAnswer($scope.User.Input.toLowerCase(), $scope.CurrentTask.Question.toLowerCase());
+            var points = PunctuationChecker.CheckAnswer($scope.User.Input, $scope.CurrentTask.Question);
+
             if (points != 0) {
                 title = "Bra jobbat!";
                 message = "Helt rätt!";
@@ -57,18 +65,17 @@
         $scope.User = {
             Input: ""
         };
-    };
+    }
 
-    angular.module("SkolApp").controller("FindTheWordsController", [
+    angular.module("SkolApp").controller("ChallengeController", [
         "$scope",
         "$routeParams",
+        "$location",
         "TaskProvider",
         "Scores",
-        "FindTheWords",
-        "FindTheWordsAnswerFilter",
         "Message",
-        "RandomWordsFilter",
-        findthewordsController
-    ]);
-
+        "PunctuationChecker",
+        "PunctuationAnswerFilter",
+        "PunctuationQuestionFilter",
+        challengeController]);
 }());

@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <div class="col-md-6 col-sm-6 col-xs-12 no-space">
+            <div class="image-wrapper">
+                <div class="overlay image" style="background-image: url({{CurrentTask.Question}})" ;></div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-sm-5 col-sm-offset-1 col-xs-12 col-xs-offset-0">
+
+            <h3 class="col-xs-12">Vad är det på bilden?</h3>
+            <form class="col-xs-12" method="post" ng-submit="CheckTask()">
+                <div class="form-group">
+                    <input type="text" name="imageDesc" ng-model="User.Input" placeholder="Skriv ditt svar här" class="col-xs-12 form-control" autocomplete="off" />
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" name="send" class="col-xs-4 btn btn-primary">
+                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                        <span>Rätta</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

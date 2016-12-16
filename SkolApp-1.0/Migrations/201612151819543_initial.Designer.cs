@@ -13,7 +13,7 @@ namespace SkolApp_1._0.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201612141428502_initial"; }
+            get { return "201612151819543_initial"; }
         }
         
         string IMigrationMetadata.Source

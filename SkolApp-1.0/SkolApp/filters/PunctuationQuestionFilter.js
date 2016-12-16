@@ -1,5 +1,5 @@
-﻿
-SkolApp.filter("PunctuationQuestion", function () {
+﻿(function () {
+    angular.module("SkolApp").filter("PunctuationQuestion", function () {
     return function (input) {
         var punctuation = [".", "?", ",", "!"];
         var temp2 = "";
@@ -18,4 +18,5 @@ SkolApp.filter("PunctuationQuestion", function () {
         };
         return temp2;
     }
-});
+    });
+}());

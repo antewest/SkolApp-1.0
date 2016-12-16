@@ -31,8 +31,7 @@ namespace SkolApp_1._0
                       "~/SkolApp/*.js",
                       "~/SkolApp/providers/*.js",
                       "~/SkolApp/controllers/*.js",
-                      "~/SkolApp/filters/*.js",
-                      "~/SkolApp/directives/*.js"));
+                      "~/SkolApp/filters/*.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
