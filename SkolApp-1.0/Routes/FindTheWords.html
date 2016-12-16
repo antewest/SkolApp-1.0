@@ -2,8 +2,8 @@
     <div class="col-xs-12">
         <div class="col-md-6 col-sm-6 col-xs-12 no-space">
             <div class="text-wrapper">
-                <p>{{CurrentTask.Question | RandomWords}}</p>
-                <div class="answertext" ng-bind-html="User.Input | FindTheWordsAnswer:CurrentTask.Question"></div>
+                <div ng-bind-html="CurrentTask.Question | RandomWords"></div>
+                <div class="answertext" ng-bind-html="InputView | FindTheWordsAnswer:CurrentTask.Question"></div>
             </div>
         </div>
 

@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="challenge in challengeList" ng-if="challenge.QuestionsCount" ng-click='go(challenge.Id)' style="cursor:pointer;">
+                    <tr ng-repeat="challenge in challengeList" ng-if="challenge.QuestionsCount && challenge.Type != 'Custom'" ng-click='go(challenge.Id)' style="cursor:pointer;">
                         <td><a ng-href="/Challenge/?id={{challenge.Id}}">{{challenge.QuestionsCount}}</a></td>
                         <td><a ng-href="/Challenge/?id={{challenge.Id}}">{{challenge.Type}}</a></td>
                     </tr>

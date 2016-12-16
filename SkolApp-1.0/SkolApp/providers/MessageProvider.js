@@ -61,6 +61,7 @@
             return swal({
                 title: TITLE,
                 text: MESSAGE,
+                input: 'text',
                 showCancelButton: true,
                 inputValidator: function (value) {
                     return new Promise(function (resolve, reject) {

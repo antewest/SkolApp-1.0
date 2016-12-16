@@ -6,7 +6,8 @@
             if (input == '' || rightanswer == '')
                 return input;
 
-            rightanswer = rightanswer.split(" ");
+            rightanswer = rightanswer.toLowerCase().split(" ");
+            input = input.toLowerCase();
             var words = [];
 
             angular.forEach(input.split(" "), function (value, key, obj) {

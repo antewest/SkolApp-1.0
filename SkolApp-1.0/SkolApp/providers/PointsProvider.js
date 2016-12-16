@@ -7,11 +7,13 @@
             if (input == '' || rightanswer == '' || QuestionType == '')
                 return 0;
 
+            rightanswer = rightanswer.toLowerCase();
+            input = input.toLowerCase();
 
             switch (QuestionType) {
                 case "colorandtext":
                     {
-                        if(input == rightanswer)
+                        if (input == rightanswer)
                             return 1;
                     }
                     break;
@@ -39,6 +41,8 @@
                     {
                         var score = 0;
 
+                        rightanswer = rightanswer.split(" ");
+
                         angular.forEach(input.split(" "), function (value, key, obj) {
                             if (rightanswer[key] == value)
                                 score += 1
@@ -58,7 +62,6 @@
             CalculatePoints: calculatepoints,
             AddPoints: function (amount) {
                 this.TotalPoints += amount;
-                debugger;
             },
             RemovePoints: function (amount) {
                 this.TotalPoints -= amount;

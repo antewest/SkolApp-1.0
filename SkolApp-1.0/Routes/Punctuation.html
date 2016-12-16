@@ -3,7 +3,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12 no-space">
             <div class="text-wrapper">
                 <p>{{CurrentTask.Question | PunctuationQuestion}}</p>
-                <div class="answertext" ng-bind-html="User.Input | PunctuationAnswer:CurrentTask.Question"></div>
+                <div class="answertext" ng-bind-html="InputView | PunctuationAnswer:CurrentTask.Question"></div>
             </div>
         </div>
 

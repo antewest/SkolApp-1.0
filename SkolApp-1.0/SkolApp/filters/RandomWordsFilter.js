@@ -10,7 +10,6 @@
 
             do
             {
-                words = [];
                 angular.forEach(splitinput, function (value, key, obj) {
                     if (Math.random() < 0.5)
                         this.push(value);
@@ -18,13 +17,15 @@
                         this.unshift(value);
 
                 }, words);
-                
             }
             while (words == splitinput)
 
+            angular.forEach(words, function (value, key, obj) {
+                obj[key] = obj[key] + "<br>";
+            }, words);
+
             return words.join(' ');
         };
-
     };
 
     

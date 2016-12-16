@@ -22,7 +22,6 @@
                 ChallengeId: challengeId
             }
             return $http.post('/Home/AddScore/', { score: tempobj }).then(function (response) {
-                alert("Din poäng har lagts till.");
                 window.location.reload();
             });
         }
