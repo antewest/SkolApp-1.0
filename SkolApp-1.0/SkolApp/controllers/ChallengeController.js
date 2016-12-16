@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    var challengeController = function ($scope, $routeParams, $location, TaskProvider, Scores, Points) {
+    var challengeController = function ($scope, $routeParams, $location, TaskProvider, Scores, Points, Message) {
         var _taskProvider = new TaskProvider();
 
         Scores.GetTopScores(10, $routeParams.id).then(function (response) {
@@ -14,7 +14,7 @@
 
             if(!$scope.CurrentTask)
             {
-                $location.path("/Challenges/");
+               // $location.path("/Challenges/");
             }
         }
 
@@ -29,24 +29,33 @@
 
         $scope.CheckTask = function () {
             var PassedTest = false;
+            var title, message, type;
             _taskProvider.AllowNext();
 
             if ($scope.User.Input.length <= 0) {
-                alert("Du måste skriva något innan du kan rätta.");
+                title = "Hoppsan!";
+                message = "Du måste välja något först.";
+                type = "error";
+                Message.DisplayMessage(title, message, type);
                 return;
             }
-            
             var points = Points.CalculatePoints($scope.CurrentTask.Type.Name, $scope.User.Input, $scope.CurrentTask.Answer);
-            debugger;
+           
             if (points != 0) {
-                alert("Rätt svar!");
+                title = "Bra jobbat!";
+                message = "Helt rätt!";
+                type = "success";
                 PassedTest = true;
             }
             else {
-                alert("Tyvärr, det är fel svar :(");
+                title = "Tyvärr!";
+                message = "Nu blev det visst fel :(";
+                type = "error";
             }
 
-            UpdateTask(PassedTest, points);
+            Message.DisplayMessage(title, message, type).then(function (e) {
+                UpdateTask(PassedTest, points);
+            });
         }
 
         $scope.CurrentTask = {};
@@ -64,8 +73,10 @@
         "TaskProvider",
         "Scores",
         "Points",
+        "Message",
         "PunctuationAnswerFilter",
         "PunctuationQuestionFilter",
-
+        "FindTheWordsAnswerFilter",
+        "RandomWordsFilter",
         challengeController]);
 }());

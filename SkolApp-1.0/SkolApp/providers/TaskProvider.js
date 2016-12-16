@@ -1,7 +1,6 @@
 ﻿'use strict';
 (function () {
-
-    var TaskProvider = function ($http, Points, Scores) {
+    var TaskProvider = function ($http, Points, Scores, Message) {
         var taskprovider = function () {
             var challenge = {};
             var challenges = [];
@@ -37,18 +36,25 @@
 
                 if (challenge.Questions[index].AllowNext)
                     index += 1;
+
                 if (index < challenge.Questions.length) {
                     if (GetAll === true)
                         return challenge.Questions;
 
                     return challenge.Questions[index];
-                }
-                else {
+                }  
+                else
+                {
                     index -= 1;
-                    if (confirm("You scored:" + Points.TotalPoints + "\nOut of:" + getlength().Last + "\nDo you want to add your score?")) {
-                        var nickname = prompt("Enter Nickname:");
-                        Scores.SetScore(nickname, challenge.Id, Points.TotalPoints);
-                    }
+                    Message.DisplayQuestion("Din poäng", "Du fick " + Points.TotalPoints + " av " + getlength().Last + "\nVill du spara resultatet?").then(function (e) {
+                        if (e == true) {
+                            Message.DisplayInput("Spara poäng", "Välj ett namn.").then(function (e) {
+                                console.log(e);
+                                var str = e;
+                                Scores.SetScore(nickname, challenge.Id, Points.TotalPoints);
+                            });
+                        }
+                    });
                 }
             }
 
@@ -86,6 +92,7 @@
         "$http",
         "Points",
         "Scores",
+        "Message",
         TaskProvider
     ]);
 }());

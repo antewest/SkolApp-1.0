@@ -1,8 +1,10 @@
-﻿<h2 class="header">{{CurrentTask.Type.Name}}:</h2>
+﻿<div class="row header">
+    <p style="float:right !important;">Text {{TaskIndex}} av {{AmountOfTasks}}</p>
+    <h2 class="col-xs-6">{{CurrentTask.Type.Name}}:</h2>
+</div>
 
 <div class="row">
     <div class="col-xs-12">
-        <p class="col-xs-12">Text {{TaskIndex}} av {{AmountOfTasks}}</p>
         <div ng-switch="CurrentTask.Type.Name">
             <div ng-switch-when="Punctuation"><div ng-include="'/routes/Punctuation.html'"></div></div>
             <div ng-switch-when="FindTheWords"><div ng-include="'/routes/FindTheWords.html'"></div></div>

@@ -1,17 +1,14 @@
 ﻿(function () {
     angular.module("SkolApp").filter("PunctuationQuestion", function () {
     return function (input) {
-        input = input || '';
+        var punctuation = [".", "?", ",", "!"];
+        var temp2 = "";
 
-        //input = input.toUpperCase();
+        input = input || '';
+        var temp1 = input;
 
         if (input == '')
             return input;
-
-        var punctuation = [".", "?", ",", "!"];
-
-        var temp1 = input;
-        var temp2 = "";
 
         for (var i = 0; i < temp1.length; i++) {
             if (punctuation.indexOf(temp1[i]) != -1)

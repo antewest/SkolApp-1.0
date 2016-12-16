@@ -33,13 +33,9 @@ namespace SkolApp_1._0
                       "~/SkolApp/controllers/*.js",
                       "~/SkolApp/filters/*.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/swal").Include(
-                      "~/SweetAlert/sweetalert2.min.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/SweetAlert/*.css"));
+                      "~/Content/site.css"));
         }
     }
 }

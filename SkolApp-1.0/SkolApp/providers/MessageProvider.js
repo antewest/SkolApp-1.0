@@ -18,7 +18,7 @@
 
         }
 
-        var DisplayCountdown = function (TITLE, MESSAGE, TYPE, TIMEDOWN) {
+        var Countdown = function (TITLE, MESSAGE, TYPE, TIMEDOWN) {
 
             swal({
                 title: TITLE,
@@ -28,17 +28,65 @@
             }).then(
                 function () { },
                 function (dismiss) {
-                    if (dismiss == "timer") {
+                    if (dismiss != "cancel") {
                         return true;
                     }
                 }
-            ).catch(swal.noop());
+            );
+
+        }
+
+        var Question = function (TITLE, MESSAGE) {
+
+            return swal({
+                title: TITLE,
+                text: MESSAGE,
+                type: "question",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33'
+            }).then(
+            function (isConfirm) {
+                return isConfirm;
+            },
+            function (dismiss) {
+                if (dismiss != "timer")
+                    return false;
+            });
+
+        }
+
+        var Input = function (TITLE, MESSAGE) {
+
+            return swal({
+                title: TITLE,
+                text: MESSAGE,
+                showCancelButton: true,
+                inputValidator: function (value) {
+                    return new Promise(function (resolve, reject) {
+                        if (value) {
+                            resolve()
+                        } else {
+                            reject('Du måste fylla i något först.')
+                        }
+                    })
+                }
+            }).then(
+            function (result) {
+                return result;
+            },
+            function (dismiss) {
+                if (dismiss != "timer")
+                    return false;
+            });
 
         }
 
         return {
             DisplayMessage: Display,
-            DisplayMessageCD: DisplayCountdown
+            DisplayMessageCD: Countdown,
+            DisplayQuestion: Question,
+            DisplayInput: Input
         };
     }
 
