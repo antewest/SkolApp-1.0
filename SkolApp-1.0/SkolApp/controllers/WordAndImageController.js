@@ -1,5 +1,5 @@
 ﻿(function () {
-    var WordAndImageController = function ($scope, $http, TaskProvider, Scores) {
+    var WordAndImageController = function ($scope, $http, TaskProvider, Scores, Message) {
 
         Scores.GetTopScores(10, "GetWordAndImage").then(function (response) {
             $scope.scores = response;
@@ -22,20 +22,31 @@
 
         $scope.CheckTask = function () {
             var PassedTest = false;
+            var title, message, type;
+
             if ($scope.User.Input.length <= 0) {
-                alert("Du måste skriva något innan du kan rätta.");
+                title = "Hoppsan!";
+                message = "Du måste skriva något innan du kan rätta.";
+                type = "error";
+                Message.DisplayMessage(title, message, type);
                 return;
             }
 
             if ($scope.CurrentTask.Answer.toLowerCase() == $scope.User.Input.toLowerCase()) {
-                alert("Rätt svar!");
+                title = "Bra jobbat!";
+                message = "Helt rätt!";
+                type = "success";
                 PassedTest = true;
             }
             else {
-                alert("Tyvärr, det är fel svar :(");
+                title = "Tyvärr!";
+                message = "Nu blev det visst fel :(";
+                type = "error";
             }
 
-            UpdateTask(PassedTest);
+            Message.DisplayMessage(title, message, type).then(function (e) {
+                UpdateTask(PassedTest);
+            });
         }
 
         $scope.CurrentTask = {};
@@ -51,6 +62,7 @@
         "$http",
         "TaskProvider",
         "Scores",
+        "Message",
         WordAndImageController
     ]);
 
